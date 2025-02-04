@@ -56,7 +56,7 @@ public struct ListRowLabel<Icon: View>: View {
     var status: String?
     var description: String?
     // Tchap: add attributed description to replace description if needed.
-    var attributedDescription: AttributedString?
+    var attributedDescriptionWhenDisabled: AttributedString?
     var icon: Icon?
     
     var role: Role?
@@ -199,8 +199,8 @@ public struct ListRowLabel<Icon: View>: View {
                         .foregroundColor(descriptionColor)
                         .lineLimit(descriptionLineLimit)
                 }
-            } // Tchap: handle `attributedDescription` property
-            else if let attributedDescription {
+            } // Tchap: handle `attributedDescriptionWhenDisabled` property
+            else if let attributedDescriptionWhenDisabled {
                 HStack(alignment: .top, spacing: 4) {
                     if role == .error {
                         CompoundIcon(\.error, size: .xSmall, relativeTo: .compound.bodySM)
@@ -208,13 +208,13 @@ public struct ListRowLabel<Icon: View>: View {
                     }
                     
                     if isEnabled {
-                        Text(attributedDescription)
-                            .font(.compound.bodySM)
-                            .lineLimit(descriptionLineLimit)
-                    } else {
-                        Text(String(attributedDescription.characters))
+                        Text(String(attributedDescriptionWhenDisabled.characters))
                             .font(.compound.bodySM)
                             .foregroundColor(descriptionColor)
+                            .lineLimit(descriptionLineLimit)
+                    } else {
+                        Text(attributedDescriptionWhenDisabled)
+                            .font(.compound.bodySM)
                             .lineLimit(descriptionLineLimit)
                     }
                     
@@ -228,13 +228,13 @@ public struct ListRowLabel<Icon: View>: View {
     
     public static func `default`(title: String,
                                  description: String? = nil,
-                                 attributedDescription: AttributedString? = nil, // Tchap: add `attributedDescription` parameter
+                                 attributedDescriptionWhenDisabled: AttributedString? = nil, // Tchap: add `attributedDescriptionWhenDisabled` parameter
                                  icon: Icon,
                                  role: ListRowLabel.Role? = nil,
                                  iconAlignment: VerticalAlignment = .center) -> ListRowLabel {
         ListRowLabel(title: title,
                      description: description,
-                     attributedDescription: attributedDescription,  // Tchap: add `attributedDescription` parameter
+                     attributedDescriptionWhenDisabled: attributedDescriptionWhenDisabled,  // Tchap: add `attributedDescriptionWhenDisabled` parameter
                      icon: icon,
                      role: role,
                      iconAlignment: iconAlignment)
@@ -242,13 +242,13 @@ public struct ListRowLabel<Icon: View>: View {
     
     public static func `default`(title: String,
                                  description: String? = nil,
-                                 attributedDescription: AttributedString? = nil, // Tchap: add `attributedDescription` parameter
+                                 attributedDescriptionWhenDisabled: AttributedString? = nil, // Tchap: add `attributedDescription` parameter
                                  icon: KeyPath<CompoundIcons, Image>,
                                  role: ListRowLabel.Role? = nil,
                                  iconAlignment: VerticalAlignment = .center) -> ListRowLabel where Icon == CompoundIcon {
         .default(title: title,
                  description: description,
-                 attributedDescription: attributedDescription, // Tchap: add `attributedDescription` parameter
+                 attributedDescriptionWhenDisabled: attributedDescriptionWhenDisabled, // Tchap: add `attributedDescriptionWhenDisabled` parameter
                  icon: CompoundIcon(icon),
                  role: role,
                  iconAlignment: iconAlignment)
