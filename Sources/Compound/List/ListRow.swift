@@ -84,6 +84,8 @@ public struct ListRow<Icon: View, DetailsIcon: View, CustomContent: View, Select
             } label: {
                 label
             }
+            // Due to a limitation of LabeledContent, we need to manually combine them for accessibility
+            .accessibilityElement(children: .combine)
         case .toggle(let binding):
             LabeledContent {
                 // Note: VoiceOver label already provided.
@@ -95,6 +97,8 @@ public struct ListRow<Icon: View, DetailsIcon: View, CustomContent: View, Select
                 label
             }
             .padding(.trailing, ListRowPadding.horizontal)
+            // Due to a limitation of LabeledContent, we need to manually combine them for accessibility
+            .accessibilityElement(children: .combine)
         case .inlinePicker(let selection, let items):
             ListInlinePicker(title: label.title ?? "",
                              selection: selection,
@@ -240,9 +244,7 @@ private extension Button {
 
 // MARK: - Previews
 
-import Prefire
-
-public struct ListRow_Previews: PreviewProvider, PrefireProvider {
+public struct ListRow_Previews: PreviewProvider, TestablePreview {
     public static var previews: some View {
         Form {
             Section {
@@ -434,7 +436,7 @@ public struct ListRow_Previews: PreviewProvider, PrefireProvider {
     }
 }
 
-struct ListRowLoadingSelection_Previews: PreviewProvider, PrefireProvider {
+struct ListRowLoadingSelection_Previews: PreviewProvider, TestablePreview {
     static var previews: some View {
         Form {
             ListRow(label: .plain(title: "Selected",
