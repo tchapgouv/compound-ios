@@ -48,7 +48,9 @@ public struct SendButton: View {
     
     var buttonShape: some View {
         Circle()
-            .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom))
+        // Tchap: use Tchap main background action color.
+//            .fill(LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom))
+            .fill(.compound.bgActionPrimaryRest)
     }
 }
 
