@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "Compound", targets: ["Compound"])
     ],
     dependencies: [
-        .package(url: "https://github.com/tchapgouv/compound-design-tokens", branch: "main"),
+        .package(url: "https://github.com/tchapgouv/compound-design-tokens", revision: "6bc3d7545cc5726e87c5a1015a49048eeecfebad"),
 //        .package(path: "../compound-design-tokens"),
         .package(url: "https://github.com/siteline/SwiftUI-Introspect", from: "1.3.0"),
         .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols", from: "6.2.0"),
