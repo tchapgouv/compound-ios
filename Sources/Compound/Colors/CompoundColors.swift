@@ -56,8 +56,8 @@ public class CompoundColors {
        ]
         
         // Tchap: use customized colors for incoming and outgoing bubbles.
-        _bgBubbleIncoming = tokens.bgSubtlePrimary
-        _bgBubbleOutgoing = tokens.bgSubtleSecondary
+        _bgBubbleIncoming = tokens.bgSubtleSecondary
+        _bgBubbleOutgoing = tokens.bgSubtlePrimary
     }
     
     // MARK: - Elevation Tokens
